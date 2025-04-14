@@ -1,0 +1,16 @@
+{
+    "name": "hexlet/code",
+    "description": "Game - 1",
+    "authors": [
+        {
+            "name": "Alex",
+            "email": "kosm24@yandex.ru"
+        }
+    ],
+    "require": {},
+    "license": "MIT",
+    "bin": [
+        "bin/brain-games"
+    ]
+}
+
