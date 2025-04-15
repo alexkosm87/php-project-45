@@ -16,7 +16,10 @@
     "autoload": {
         "psr-4": {
             "PhpProject45\\": "src/"
-        }
+        },
+        "files": [
+            "src/Cli.php"
+        ]   
     },
    "bin": [
         "bin/brain-games"
