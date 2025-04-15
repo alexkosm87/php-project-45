@@ -3,7 +3,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use function PhpProject45\Cli;
+use function PhpProject45\Cli\welcome;
 
 welcome();
 
