@@ -7,10 +7,18 @@
             "email": "kosm24@yandex.ru"
         }
     ],
-    "require": {},
+    "require": {
+        "wp-cli/php-cli-tools": "^0.12.4"
+    },
+
     "license": "MIT",
-    "bin": [
+
+    "autoload": {
+        "psr-4": {
+            "PhpProject45\\": "src/"
+        }
+    },
+   "bin": [
         "bin/brain-games"
     ]
 }
-
