@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpProject45\Engine;
+namespace PhpProject45;
 
 class Engine
 {
