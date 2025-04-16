@@ -1,12 +1,10 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-use Engine\GameEngine;
-use Games\BrainCalc;
+use Brain\Games\Engine;
+use Brain\Games\Calculator;
 
-$gameEngine = new GameEngine();
-$game = new BrainCalc();
-$gameEngine->run($game);
-
+$game = new Calculator();
+Engine::run($game);
