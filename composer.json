@@ -16,8 +16,6 @@
     "autoload": {
         "psr-4": {
         "PhpProject45\\": "src/",
-        "Engine\\": "src/",
-        "Games\\": "src/Games/"
         },
         "files": [
             "src/Cli.php"
