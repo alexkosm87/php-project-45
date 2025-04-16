@@ -43,8 +43,19 @@ class Calc
 
     private function calculateAnswer(string $question): int
     {
-        return eval("return $question;");
+        list($num1, $operation, $num2) = explode(' ', $question);
+        switch ($operation) {
+            case '+':
+                return $num1 + $num2;
+            case '-':
+                return $num1 - $num2;
+            case '*':
+                return $num1 * $num2;
+            default:
+                throw new \Exception("Unsupported operation: $operation");
+        }
     }
+
 }
 
 
