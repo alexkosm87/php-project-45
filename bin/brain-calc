@@ -3,61 +3,10 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use function cli\line;
-use function cli\prompt;
+use Engine\GameEngine;
+use Games\BrainCalc;
 
-function calculate($num1, $num2, $operation) {
-    switch ($operation) {
-        case '+':
-            return $num1 + $num2;
-        case '-':
-            return $num1 - $num2;
-        case '*':
-            return $num1 * $num2;
-        default:
-            throw new Exception("Unknown operation: $operation");
-    }
-}
-
-function welcome() {
-    line('Welcome to the Brain Games!');
-    $name = prompt('May I have your name?');
-    line("Hello, %s!", $name);
-    return $name;
-}
-
-function playGame() {
-    $name = welcome();
-    line('What is the result of the expression?');
-
-    $correctAnswersCount = 0;
-    $roundsToWin = 3;
-
-    while ($correctAnswersCount < $roundsToWin) {
-        $num1 = mt_rand(1, 50);
-        $num2 = mt_rand(1, 50);
-        $operations = ['+', '-', '*'];
-        $operation = $operations[array_rand($operations)];
-
-        $question = "$num1 $operation $num2";
-        $correctAnswer = calculate($num1, $num2, $operation);
-
-        line("Question: %s", $question);
-        $userAnswer = prompt("Your answer:");
-
-        if ((int)$userAnswer !== $correctAnswer) {
-            line("'%s' is wrong answer ;(. Correct answer was '%d'.", $userAnswer, $correctAnswer);
-            line("Let's try again, %s!", $name);
-            return;
-        }
-
-        line("Correct!");
-        $correctAnswersCount++;
-    }
-
-    line("Congratulations, %s!", $name);
-}
-
-playGame();
-
+$gameEngine = new GameEngine();
+$game = new BrainCalc();
+$gameEngine->run($game);
 

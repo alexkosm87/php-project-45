@@ -1,44 +1,34 @@
 <?php
 
-namespace Games\BrainCalc;
+namespace Games;
 
-use function Engine\runGame;
-
-function getRandomExpression()
+class BrainCalc
 {
-    $operations = ['+', '-', '*'];
-    $num1 = rand(1, 50);
-    $num2 = rand(1, 50);
-    $operation = $operations[array_rand($operations)];
+    public function getQuestionAndAnswer()
+    {
+        $num1 = mt_rand(1, 50);
+        $num2 = mt_rand(1, 50);
+        $operations = ['+', '-', '*'];
+        $operation = $operations[array_rand($operations)];
 
-    return [$num1, $num2, $operation];
-}
+        $question = "$num1 $operation $num2";
+        $correctAnswer = $this->calculate($num1, $num2, $operation);
 
-function calculateAnswer($num1, $num2, $operation)
-{
-    switch ($operation) {
-        case '+':
-            return $num1 + $num2;
-        case '-':
-            return $num1 - $num2;
-        case '*':
-            return $num1 * $num2;
+        return [$question, $correctAnswer];
     }
-}
 
-function play()
-{
-    $gameLogic = [
-        'question' => function () {
-            [$num1, $num2, $operation] = getRandomExpression();
-            return "$num1 $operation $num2";
-        },
-        'answer' => function ($question) {
-            [$num1, $num2, $operation] = explode(' ', $question);
-            return calculateAnswer((int)$num1, (int)$num2, $operation);
-        },
-    ];
-
-    runGame($gameLogic);
+    private function calculate($num1, $num2, $operation)
+    {
+        switch ($operation) {
+            case '+':
+                return $num1 + $num2;
+            case '-':
+                return $num1 - $num2;
+            case '*':
+                return $num1 * $num2;
+            default:
+                throw new Exception("Unknown operation: $operation");
+        }
+    }
 }
 

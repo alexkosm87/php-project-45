@@ -5,30 +5,41 @@ namespace Engine;
 use function cli\line;
 use function cli\prompt;
 
-function runGame($gameLogic)
+class GameEngine
 {
-    line('Welcome to the Brain Games!');
-    $name = prompt('May I have your name?');
-    line("Hello, $name!");
+    private $roundsToWin = 3;
 
-    $roundsCount = 3;
+    public function run($game)
+    {
+        $name = $this->welcome();
+        line('What is the result of the expression?');
 
-    for ($i = 0; $i < $roundsCount; $i++) {
-        $question = $gameLogic['question']();
-        $correctAnswer = $gameLogic['answer']($question);
+        $correctAnswersCount = 0;
 
-        line("Question: $question");
-        $userAnswer = prompt('Your answer:');
+        while ($correctAnswersCount < $this->roundsToWin) {
+            [$question, $correctAnswer] = $game->getQuestionAndAnswer();
+            line("Question: %s", $question);
+            $userAnswer = prompt("Your answer:");
 
-        if ($userAnswer !== (string)$correctAnswer) {
-            line("'$userAnswer' is wrong answer ;(. Correct answer was '$correctAnswer'.");
-            line("Let's try again, $name!");
-            return;
+            if ((int)$userAnswer !== $correctAnswer) {
+                line("'%s' is wrong answer ;(. Correct answer was '%d'.", $userAnswer, $correctAnswer);
+                line("Let's try again, %s!", $name);
+                return;
+            }
+
+            line("Correct!");
+            $correctAnswersCount++;
         }
 
-        line('Correct!');
+        line("Congratulations, %s!", $name);
     }
 
-    line("Congratulations, $name!");
+    private function welcome()
+    {
+        line('Welcome to the Brain Games!');
+        $name = prompt('May I have your name?');
+        line("Hello, %s!", $name);
+        return $name;
+    }
 }
 

@@ -15,7 +15,9 @@
 
     "autoload": {
         "psr-4": {
-            "PhpProject45\\": "src/"
+        "PhpProject45\\": "src/",
+        "Engine\\": "src/",
+        "Games\\": "src/Games/"
         },
         "files": [
             "src/Cli.php"
@@ -30,3 +32,4 @@
         "squizlabs/php_codesniffer": "^3.12"
     }
 }
+
