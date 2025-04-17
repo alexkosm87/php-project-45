@@ -12,7 +12,7 @@ class Prime
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
-        echo "Answer "yes" if given number is prime. Otherwise answer "no".\n";
+        echo "Answer \"yes\" if given number is prime. Otherwise answer \"no\".\n"; // Исправлено
 
         for ($i = 0; $i < self::ROUNDS; $i++) {
             $question = $this->generateQuestion();
@@ -34,7 +34,7 @@ class Prime
 
     private function generateQuestion(): int
     {
-        return random_int (1, 100); // Генерируем случайное число от 1 до 100
+        return random_int(1, 100); // Генерируем случайное число от 1 до 100
     }
 
     private function isPrime(int $n): bool
@@ -43,16 +43,16 @@ class Prime
             return false;
         }
         if ($n === 2) {
-            return true;
+            return true; // 2 является простым числом
         }
         if ($n % 2 === 0) {
-            return false;
+            return false; // Четные числа больше 2 не являются простыми
         }
         for ($i = 3; $i <= sqrt($n); $i += 2) {
             if ($n % $i === 0) {
-                return false;
+                return false; // Если n делится на i, то не простое
             }
         }
-        return true;
+        return true; // Если ни одно из условий не выполнено, то n простое
     }
 }
