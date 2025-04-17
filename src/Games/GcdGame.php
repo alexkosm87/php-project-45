@@ -20,7 +20,7 @@ class GcdGame
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
-        Engine::askQuestion("Find the greatest common divisor of given numbers.");
+        echo "Find the greatest common divisor of given numbers.\n";
 
         for ($i = 0; $i < 3; $i++) {
             $num1 = random_int (1, 100);
