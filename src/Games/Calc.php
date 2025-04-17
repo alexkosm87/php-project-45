@@ -15,8 +15,8 @@ class Calc
         Engine::welcome($name);
 
         for ($i = 0; $i < self::ROUNDS; $i++) {
-            $question = $this->_generateQuestion();
-            $correctAnswer = $this->_calculateAnswer($question);
+            $question = $this->generateQuestion();
+            $correctAnswer = $this->calculateAnswer($question);
 
             Engine::askQuestion($question);
             $userAnswer = Engine::getUserAnswer();
@@ -32,7 +32,7 @@ class Calc
         Engine::congratulate($name);
     }
 
-    private function _generateQuestion(): string
+    private function generateQuestion(): string
     {
         $num1 = random_int (1, 50);
         $num2 = random_int (1, 50);
@@ -41,7 +41,7 @@ class Calc
         return "$num1 $operation $num2";
     }
 
-    private function _calculateAnswer(string $question): int
+    private function calculateAnswer(string $question): int
     {
         list($num1, $operation, $num2) = explode(' ', $question);
         switch ($operation) {
