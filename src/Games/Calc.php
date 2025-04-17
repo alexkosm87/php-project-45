@@ -34,8 +34,8 @@ class Calc
 
     private function generateQuestion(): string
     {
-        $num1 = rand(1, 50);
-        $num2 = rand(1, 50);
+        $num1 = random_int (1, 50);
+        $num2 = random_int (1, 50);
         $operation = self::OPERATIONS[array_rand(self::OPERATIONS)];
         
         return "$num1 $operation $num2";
