@@ -13,12 +13,10 @@ class Calc
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
-        
-        echo "What is the result of the expression?\n";
-        
+
         for ($i = 0; $i < self::ROUNDS; $i++) {
-            $question = $this->generateQuestion();
-            $correctAnswer = $this->calculateAnswer($question);
+            $question = $this->_generateQuestion();
+            $correctAnswer = $this->_calculateAnswer($question);
 
             Engine::askQuestion($question);
             $userAnswer = Engine::getUserAnswer();
@@ -34,16 +32,16 @@ class Calc
         Engine::congratulate($name);
     }
 
-    private function generateQuestion(): string
+    private function _generateQuestion(): string
     {
         $num1 = random_int (1, 50);
         $num2 = random_int (1, 50);
         $operation = self::OPERATIONS[array_rand(self::OPERATIONS)];
-        
+
         return "$num1 $operation $num2";
     }
 
-    private function calculateAnswer(string $question): int
+    private function _calculateAnswer(string $question): int
     {
         list($num1, $operation, $num2) = explode(' ', $question);
         switch ($operation) {
@@ -57,7 +55,4 @@ class Calc
                 throw new \Exception("Unsupported operation: $operation");
         }
     }
-
 }
-
-
