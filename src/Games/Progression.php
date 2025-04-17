@@ -30,7 +30,8 @@ class Progression
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
-
+        echo "What number is missing in the progression?\n";
+        
         for ($i = 0; $i < 3; $i++) {
             $questionData = $this->getQuestion();
             $question = $questionData['question'];
