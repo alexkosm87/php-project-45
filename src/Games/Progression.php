@@ -12,9 +12,9 @@ class Progression
 
     public function __construct()
     {
-        $this->length = rand(5, 10); // Длина прогрессии от 5 до 10
-        $this->start = rand(1, 10); // Начальное число
-        $this->step = rand(1, 5); // Шаг прогрессии
+        $this->length = random_int (5, 10); // Длина прогрессии от 5 до 10
+        $this->start = random_int (1, 10); // Начальное число
+        $this->step = random_int (1, 5); // Шаг прогрессии
     }
 
     public function generateProgression()
