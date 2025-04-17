@@ -34,7 +34,7 @@ class Prime
 
     private function generateQuestion(): int
     {
-        return rand(1, 100); // Генерируем случайное число от 1 до 100
+        return random_int (1, 100); // Генерируем случайное число от 1 до 100
     }
 
     private function isPrime(int $n): bool
