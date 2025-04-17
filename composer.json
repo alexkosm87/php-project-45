@@ -25,7 +25,8 @@
    "bin": [
         "bin/brain-games",
          "bin/brain-even",
-         "bin/brain-calc"
+         "bin/brain-calc",
+         "bin/brain-progression",       
     ],
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.12"
