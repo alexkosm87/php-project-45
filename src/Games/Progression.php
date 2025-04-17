@@ -53,7 +53,7 @@ class Progression
     private function getQuestion()
     {
         $progression = $this->generateProgression();
-        $hiddenIndex = rand(0, $this->length - 1);
+        $hiddenIndex = random_int (0, $this->length - 1);
         $correctAnswer = $progression[$hiddenIndex];
         $progression[$hiddenIndex] = '..'; // Заменяем число на '..'
         
