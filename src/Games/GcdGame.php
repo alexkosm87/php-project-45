@@ -23,8 +23,8 @@ class GcdGame
         Engine::askQuestion("Find the greatest common divisor of given numbers.");
 
         for ($i = 0; $i < 3; $i++) {
-            $num1 = rand(1, 100);
-            $num2 = rand(1, 100);
+            $num1 = random_int (1, 100);
+            $num2 = random_int (1, 100);
             $correctAnswer = $this->gcd($num1, $num2);
 
             $question = "$num1 $num2";
