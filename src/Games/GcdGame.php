@@ -1,6 +1,8 @@
 <?php
 
-namespace Games;
+namespace PhpProject45\Games;
+
+use PhpProject45\Engine;
 
 class GcdGame
 {
@@ -14,32 +16,29 @@ class GcdGame
         return $a;
     }
 
-    public function play()
+    public function run()
     {
-        echo "Welcome to the Brain Games!\n";
-        echo "May I have your name? ";
-        $name = trim(fgets(STDIN));
-        echo "Hello, $name!\n";
-        echo "Find the greatest common divisor of given numbers.\n";
+        $name = Engine::getUserName();
+        Engine::welcome($name);
+        Engine::askQuestion("Find the greatest common divisor of given numbers.");
 
         for ($i = 0; $i < 3; $i++) {
             $num1 = rand(1, 100);
             $num2 = rand(1, 100);
             $correctAnswer = $this->gcd($num1, $num2);
 
-            echo "Question: $num1 $num2\n";
-            echo "Your answer: ";
-            $userAnswer = trim(fgets(STDIN));
+            $question = "$num1 $num2";
+            Engine::askQuestion($question);
+            $userAnswer = Engine::getUserAnswer();
 
-            if ($userAnswer == $correctAnswer) {
-                echo "Correct!\n";
-            } else {
-                echo "'$userAnswer' is wrong answer ;(. Correct answer was '$correctAnswer'.\n";
-                echo "Let's try again, $name!\n";
+            if ($userAnswer != $correctAnswer) {
+                Engine::wrongAnswer($userAnswer, $correctAnswer, $name);
                 return;
             }
+
+            Engine::correctAnswer();
         }
 
-        echo "Congratulations, $name!\n";
+        Engine::congratulate($name);
     }
 }
