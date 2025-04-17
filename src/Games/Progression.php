@@ -12,12 +12,12 @@ class Progression
 
     public function __construct()
     {
-        $this->length = random_int (5, 10); // Длина прогрессии от 5 до 10
-        $this->start = random_int (1, 10); // Начальное число
-        $this->step = random_int (1, 5); // Шаг прогрессии
+        $this->length = random_int(5, 10); // Длина прогрессии от 5 до 10
+        $this->start = random_int(1, 10); // Начальное число
+        $this->step = random_int(1, 5); // Шаг прогрессии
     }
 
-    public function generateProgression()
+    public function generateProgression(): array // Указываем тип возвращаемого значения
     {
         $progression = [];
         for ($i = 0; $i < $this->length; $i++) {
@@ -40,7 +40,7 @@ class Progression
             Engine::askQuestion($question);
             $userAnswer = Engine::getUserAnswer();
 
-            if ($userAnswer == $correctAnswer) {
+            if ($userAnswer === $correctAnswer) { // Используем строгое сравнение
                 Engine::correctAnswer();
             } else {
                 Engine::wrongAnswer($userAnswer, $correctAnswer, $name);
@@ -51,10 +51,10 @@ class Progression
         Engine::congratulate($name);
     }
 
-    private function getQuestion()
+    private function getQuestion(): array // Указываем тип возвращаемого значения
     {
         $progression = $this->generateProgression();
-        $hiddenIndex = random_int (0, $this->length - 1);
+        $hiddenIndex = random_int(0, $this->length - 1);
         $correctAnswer = $progression[$hiddenIndex];
         $progression[$hiddenIndex] = '..'; // Заменяем число на '..'
         
