@@ -13,6 +13,9 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=alexkosm87_php-project-45&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=alexkosm87_php-project-45)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=alexkosm87_php-project-45&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=alexkosm87_php-project-45)
 
-#  Video:
+#  Video brain-even:
 https://asciinema.org/a/c1a0V2nOTSPHDWSCCdIh0jMEN
+#  Video brain-calc:
 https://asciinema.org/a/Yw4MUOLWM6ybG1He8QXjEwswT
+#  Video brain-gcd:
+https://asciinema.org/a/ELOhsFqEmoJgHHA85Y9d3mfgl
