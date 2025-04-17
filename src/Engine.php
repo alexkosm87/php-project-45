@@ -50,4 +50,3 @@ class Engine
         echo "Congratulations, $name!\n";
     }
 }
-
