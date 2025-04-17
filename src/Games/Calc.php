@@ -13,7 +13,7 @@ class Calc
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
-
+        echo "What is the result of the expression?\n";
         for ($i = 0; $i < self::ROUNDS; $i++) {
             $question = $this->generateQuestion();
             $correctAnswer = $this->calculateAnswer($question);
