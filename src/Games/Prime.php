@@ -12,7 +12,7 @@ class Prime
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
-        Engine::askQuestion("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
+        echo "Answer "yes" if given number is prime. Otherwise answer "no".\n";
 
         for ($i = 0; $i < self::ROUNDS; $i++) {
             $question = $this->generateQuestion();
