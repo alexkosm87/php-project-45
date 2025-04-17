@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use PhpProject45\Games\Progression;
+use PhpProject45\Engine;
+
+$game = new Progression();
+Engine::run($game);
