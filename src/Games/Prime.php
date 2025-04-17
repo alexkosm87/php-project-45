@@ -4,63 +4,55 @@ namespace PhpProject45\Games;
 
 use PhpProject45\Engine;
 
-class Progression
+class Prime
 {
-    private $_length;
-    private $_start;
-    private $_step;
-
-    public function __construct()
-    {
-        $this->_length = random_int(5, 10); // Длина прогрессии от 5 до 10
-        $this->_start = random_int(1, 10); // Начальное число
-        $this->_step = random_int(1, 5); // Шаг прогрессии
-    }
-
-    public function generateProgression(): array
-    {
-        $progression = [];
-        for ($i = 0; $i < $this->_length; $i++) {
-            $progression[] = $this->_start + $i * $this->_step;
-        }
-        return $progression;
-    }
+    private const ROUNDS = 3;
 
     public function run()
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
-        echo "What number is missing in the progression?\n";
+        echo "Answer \"yes\" if given number is prime. Otherwise answer \"no\".\n"; // Исправлено
 
-        for ($i = 0; $i < 3; $i++) {
-            $questionData = $this->getQuestion();
-            $question = $questionData['question'];
-            $correctAnswer = $questionData['answer'];
+        for ($i = 0; $i < self::ROUNDS; $i++) {
+            $question = $this->generateQuestion();
+            $correctAnswer = $this->isPrime($question) ? 'yes' : 'no';
 
             Engine::askQuestion($question);
             $userAnswer = Engine::getUserAnswer();
 
-            if ($userAnswer === $correctAnswer) {
-                Engine::correctAnswer();
-            } else {
+            if ($userAnswer !== $correctAnswer) {
                 Engine::wrongAnswer($userAnswer, $correctAnswer, $name);
                 return;
             }
+
+            Engine::correctAnswer();
         }
 
         Engine::congratulate($name);
     }
 
-    private function getQuestion(): array
+    private function generateQuestion(): int
     {
-        $progression = $this->generateProgression();
-        $hiddenIndex = random_int(0, $this->_length - 1);
-        $correctAnswer = $progression[$hiddenIndex];
-        $progression[$hiddenIndex] = '..'; // Заменяем число на '..'
+        return random_int(1, 100); // Генерируем случайное число от 1 до 100
+    }
 
-        return [
-            'question' => implode(' ', $progression),
-            'answer' => (string) $correctAnswer // Приводим к строке
-        ];
+    private function isPrime(int $n): bool
+    {
+        if ($n < 2) {
+            return false;
+        }
+        if ($n === 2) {
+            return true; // 2 является простым числом
+        }
+        if ($n % 2 === 0) {
+            return false; // Четные числа больше 2 не являются простыми
+        }
+        for ($i = 3; $i <= sqrt($n); $i += 2) {
+            if ($n % $i === 0) {
+                return false; // Если n делится на i, то не простое
+            }
+        }
+        return true; // Если ни одно из условий не выполнено, то n простое
     }
 }
