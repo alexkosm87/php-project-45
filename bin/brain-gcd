@@ -4,7 +4,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use PhpProject45\Engine;
-use PhpProject45\Games\Сalc;
+use PhpProject45\Games\GcdGame;
 
-$game = new Сalc();
+$game = new GcdGame();
 Engine::run($game);
