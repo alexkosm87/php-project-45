@@ -6,9 +6,9 @@ use PhpProject45\Engine;
 
 class Progression
 {
-    private $length;
-    private $start;
-    private $step;
+    private $_length;
+    private $_start;
+    private $_step;
 
     public function __construct()
     {
