@@ -2,10 +2,11 @@
 
 namespace PhpProject45\Games;
 
-use PhpProject45\Engine;
+use function PhpProject45\Engine;
 
-function runGcdGame(string $name): void
+function runGcdGame(): void
 {
+    $name = Engine\getUserName();
     Engine\welcome($name);
     echo "Find the greatest common divisor of given numbers.\n";
 
@@ -14,9 +15,10 @@ function runGcdGame(string $name): void
     for ($i = 0; $i < $rounds; $i++) {
         $num1 = random_int(1, 100);
         $num2 = random_int(1, 100);
+        $question = "$num1 $num2";
+
         $correctAnswer = gcd($num1, $num2);
 
-        $question = "$num1 $num2";
         Engine\askQuestion($question);
         $userAnswer = Engine\getUserAnswer();
 
