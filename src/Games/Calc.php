@@ -16,7 +16,7 @@ function calculate(int $num1, int $num2, string $operation): int
     };
 }
 
-function generateQuestionAndAnswer(): array
+function generateCalcQuestionAndAnswer(): array
 {
     $num1 = rand(1, 50);
     $num2 = rand(1, 50);
@@ -31,5 +31,5 @@ function generateQuestionAndAnswer(): array
 
 function runCalcGame(): void
 {
-    runGame(__NAMESPACE__ . '\generateQuestionAndAnswer', DESCRIPTION);
+    runGame(__NAMESPACE__ . '\generateCalcQuestionAndAnswer', DESCRIPTION);
 }
