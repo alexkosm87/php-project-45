@@ -3,6 +3,8 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use PhpProject45\Engine;
 use PhpProject45\Games;
 
 Games\runCalcGame(Engine\getUserName());
+
