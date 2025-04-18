@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpProject45\Engine;
+namespace Engine;
 
 use function cli\line;
 use function cli\prompt;
