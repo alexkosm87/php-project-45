@@ -8,7 +8,7 @@ const DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no
 
 function isPrime(int $number): bool
 {
-    if ($number < 2) {
+    if ($number <= 1) {
         return false;
     }
     for ($i = 2; $i <= sqrt($number); $i++) {
@@ -19,10 +19,10 @@ function isPrime(int $number): bool
     return true;
 }
 
-function generateQuestionAndAnswer(): array
+function generatePrimeQuestionAndAnswer(): array
 {
     $number = rand(1, 100);
-    $question = (string)$number;
+    $question = (string) $number;
     $correctAnswer = isPrime($number) ? 'yes' : 'no';
 
     return [$question, $correctAnswer];
@@ -30,5 +30,5 @@ function generateQuestionAndAnswer(): array
 
 function runPrimeGame(): void
 {
-    runGame(__NAMESPACE__ . '\generateQuestionAndAnswer', DESCRIPTION);
+    runGame(__NAMESPACE__ . '\generatePrimeQuestionAndAnswer', DESCRIPTION);
 }
