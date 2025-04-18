@@ -12,10 +12,10 @@ class Prime
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
-        echo "Answer \"yes\" if given number is prime. Otherwise answer \"no\".\n"; // Исправлено
+        echo "Answer \"yes\" if given number is prime. Otherwise answer \"no\".\n";
 
         for ($i = 0; $i < self::ROUNDS; $i++) {
-            $question = $this->generateQuestion();
+            $question = random_int(1, 100); // Генерируем случайное число от 1 до 100
             $correctAnswer = $this->isPrime($question) ? 'yes' : 'no';
 
             Engine::askQuestion($question);
@@ -32,12 +32,8 @@ class Prime
         Engine::congratulate($name);
     }
 
-    private function generateQuestion(): int
-    {
-        return random_int(1, 100); // Генерируем случайное число от 1 до 100
-    }
-
-    private function isPrime(int $n): bool
+    // Метод для проверки, является ли число простым
+    public function isPrime(int $n): bool
     {
         if ($n < 2) {
             return false;
