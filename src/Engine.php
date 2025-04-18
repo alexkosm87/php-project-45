@@ -10,7 +10,7 @@ const ROUNDS_COUNT = 3;
 function runGame(callable $generateQuestionAndAnswer, string $gameDescription): void
 {
     line('Welcome to the Brain Games!');
-    $name = prompt('May I have your name?');
+    $name = prompt('May I have your name? ');
     line("Hello, $name!");
     line($gameDescription);
 
