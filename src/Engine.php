@@ -2,49 +2,33 @@
 
 namespace PhpProject45;
 
-function runGame(callable $gameLogic): void
-{
-    $name = getUserName();
-    welcome($name);
-    $gameLogic($name);
-}
+use function cli\prompt;
+use function cli\line;
 
-function getUserName(): string
+function runGame($gameLogic)
 {
-    echo "Welcome to the Brain Games!\n";
-    echo "May I have your name? ";
-    $name = trim(fgets(STDIN));
-    return $name;
-}
+    line('Welcome to the Brain Games!');
+    $name = prompt('May I have your name?');
+    line("Hello, %s!", $name);
+    line('What is the result of the expression?');
 
-function welcome(string $name): void
-{
-    echo "Hello, $name!\n";
-}
+    $correctAnswersCount = 0;
+    $roundsToWin = 3;
 
-function askQuestion(string $question): void
-{
-    echo "Question: $question\n";
-    echo "Your answer: ";
-}
+    while ($correctAnswersCount < $roundsToWin) {
+        [$question, $correctAnswer] = $gameLogic();
+        line("Question: $question");
+        $userAnswer = prompt("Your answer:");
 
-function getUserAnswer(): string
-{
-    return trim(fgets(STDIN));
-}
+        if ($userAnswer != $correctAnswer) {
+            line("'%s' is wrong answer ;(. Correct answer was '%s'.", $userAnswer, $correctAnswer);
+            line("Let's try again, %s!", $name);
+            return;
+        }
 
-function correctAnswer(): void
-{
-    echo "Correct!\n";
-}
+        line("Correct!");
+        $correctAnswersCount++;
+    }
 
-function wrongAnswer(string $userAnswer, string $correctAnswer, string $name): void
-{
-    echo "'$userAnswer' is wrong answer ;(. Correct answer was '$correctAnswer'.\n";
-    echo "Let's try again, $name!\n";
-}
-
-function congratulate(string $name): void
-{
-    echo "Congratulations, $name!\n";
+    line("Congratulations, %s!", $name);
 }
