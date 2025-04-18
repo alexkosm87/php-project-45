@@ -18,9 +18,7 @@
         "PhpProject45\\": "src/"
         },
         "files": [
-            "src/Cli.php",
-            "src/Engine.php",
-            "src/Games/Calc.php"            
+            "src/Cli.php"         
         ]   
     },
    "bin": [
