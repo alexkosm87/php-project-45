@@ -1,27 +1,37 @@
 <?php
 
-namespace PhpProject45\Games;
+namespace Games;
 
-use function PhpProject45\Engine\runGame;
+use function cli\line;
+use function cli\prompt;
 
-const DESCRIPTION = 'What is the result of the expression?';
+const ROUNDS_COUNT = 3;
 
-function calculate(int $num1, int $num2, string $operation): int
+function getRandomOperation()
 {
-    return match ($operation) {
-        '+' => $num1 + $num2,
-        '-' => $num1 - $num2,
-        '*' => $num1 * $num2,
-        default => throw new \InvalidArgumentException("Unsupported operation: $operation"),
-    };
+    $operations = ['+', '-', '*'];
+    return $operations[array_rand($operations)];
 }
 
-function generateQuestionAndAnswer(): array
+function calculate($num1, $num2, $operation)
+{
+    switch ($operation) {
+        case '+':
+            return $num1 + $num2;
+        case '-':
+            return $num1 - $num2;
+        case '*':
+            return $num1 * $num2;
+        default:
+            throw new \InvalidArgumentException("Unsupported operation: $operation");
+    }
+}
+
+function generateQuestionAndAnswer()
 {
     $num1 = rand(1, 50);
     $num2 = rand(1, 50);
-    $operations = ['+', '-', '*'];
-    $operation = $operations[array_rand($operations)];
+    $operation = getRandomOperation();
 
     $question = "$num1 $operation $num2";
     $correctAnswer = (string) calculate($num1, $num2, $operation);
@@ -29,7 +39,26 @@ function generateQuestionAndAnswer(): array
     return [$question, $correctAnswer];
 }
 
-function runCalcGame(): void
+function runCalcGame()
 {
-    runGame(__NAMESPACE__ . '\generateQuestionAndAnswer', DESCRIPTION);
+    line('Welcome to the Brain Games!');
+    $name = prompt('May I have your name? ');
+    line("Hello, $name!");
+    line('What is the result of the expression?');
+
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
+        [$question, $correctAnswer] = generateQuestionAndAnswer();
+        line("Question: $question");
+        $userAnswer = prompt('Your answer: ');
+
+        if ($userAnswer === $correctAnswer) {
+            line('Correct!');
+        } else {
+            line("'$userAnswer' is wrong answer ;(. Correct answer was '$correctAnswer'.");
+            line("Let's try again, $name!");
+            return;
+        }
+    }
+
+    line("Congratulations, $name!");
 }
