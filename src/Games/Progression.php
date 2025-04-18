@@ -6,9 +6,9 @@ use PhpProject45\Engine;
 
 class Progression
 {
-    public $length;
-    public $start;
-    public $step;
+    public int $length; // Указан тип
+    public int $start; // Указан тип
+    public int $step; // Указан тип
 
     public function __construct()
     {
@@ -26,7 +26,7 @@ class Progression
         return $progression;
     }
 
-    public function run()
+    public function run(): void // Указан тип возвращаемого значения
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
