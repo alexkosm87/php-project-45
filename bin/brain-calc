@@ -3,9 +3,9 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use function PhpProject45\Games\runCalcGame; // Убедитесь, что функция импортирована правильно
+use function PhpProject45\Games\runCalcGame;
 
-$name = PhpProject45\Engine\getUserName(); // Получаем имя пользователя
-runCalcGame($name); // Запускаем игру
+runCalcGame(); // Запускаем игру, не передавая аргументы
+
 
 
