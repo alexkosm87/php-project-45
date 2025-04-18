@@ -6,11 +6,12 @@ use PhpProject45\Engine;
 
 function runGcdGame(string $name): void
 {
-    const ROUNDS = 3;
-
+    Engine\welcome($name);
     echo "Find the greatest common divisor of given numbers.\n";
 
-    for ($i = 0; $i < ROUNDS; $i++) {
+    $rounds = 3;
+
+    for ($i = 0; $i < $rounds; $i++) {
         $num1 = random_int(1, 100);
         $num2 = random_int(1, 100);
         $correctAnswer = gcd($num1, $num2);
