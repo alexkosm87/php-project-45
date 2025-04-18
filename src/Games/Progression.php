@@ -8,28 +8,29 @@ const DESCRIPTION = 'What number is missing in the progression?';
 
 function generateProgression(): array
 {
-    $start = rand(1, 10);
-    $step = rand(1, 5);
     $length = rand(5, 10);
+    $start = rand(1, 20);
+    $step = rand(1, 10);
     $hiddenIndex = rand(0, $length - 1);
-
     $progression = [];
+
     for ($i = 0; $i < $length; $i++) {
-        $element = $start + $i * $step;
-        $progression[] = $i === $hiddenIndex ? '..' : $element;
+        $progression[] = $i === $hiddenIndex ? '..' : $start + $i * $step;
     }
 
     return [$progression, $start + $hiddenIndex * $step];
 }
 
-function generateQuestionAndAnswer(): array
+function generateProgressionQuestionAndAnswer(): array
 {
     [$progression, $missingNumber] = generateProgression();
     $question = implode(' ', $progression);
-    return [$question, (string)$missingNumber];
+    $correctAnswer = (string) $missingNumber;
+
+    return [$question, $correctAnswer];
 }
 
 function runProgressionGame(): void
 {
-    runGame(__NAMESPACE__ . '\generateQuestionAndAnswer', DESCRIPTION);
+    runGame(__NAMESPACE__ . '\generateProgressionQuestionAndAnswer', DESCRIPTION);
 }
