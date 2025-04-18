@@ -3,6 +3,6 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use PhpProject45\Games;
+use function PhpProject45\Games\runGcdGame;
 
-Games\runGcdGame();
+runGcdGame(); // Запускаем игру
