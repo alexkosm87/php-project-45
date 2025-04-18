@@ -3,8 +3,6 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use PhpProject45\Engine;
-use function PhpProject45\Games\runGcdGame; // Импортируйте функцию
+use PhpProject45\Games;
 
-$name = Engine::getUserName();
-runGcdGame($name); // Вызовите функцию
+Games\runGcdGame();
