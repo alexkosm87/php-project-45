@@ -1,37 +1,35 @@
 <?php
 
-namespace Games;
+namespace PhpProject45\Games;
 
-use function Engine\runGame;
+use function PhpProject45\Engine\runGame;
 
 const DESCRIPTION = 'What number is missing in the progression?';
 
-function generateProgression($start, $step, $length)
+function generateProgression(): array
 {
+    $start = rand(1, 10);
+    $step = rand(1, 5);
+    $length = rand(5, 10);
+    $hiddenIndex = rand(0, $length - 1);
+
     $progression = [];
     for ($i = 0; $i < $length; $i++) {
-        $progression[] = $start + $i * $step;
+        $element = $start + $i * $step;
+        $progression[] = $i === $hiddenIndex ? '..' : $element;
     }
-    return $progression;
+
+    return [$progression, $start + $hiddenIndex * $step];
 }
 
-function generateProgressionQuestionAndAnswer() // Переименуйте эту функцию
+function generateQuestionAndAnswer(): array
 {
-    $start = rand(1, 50);
-    $step = rand(1, 10);
-    $length = 10;
-
-    $progression = generateProgression($start, $step, $length);
-    $missingIndex = rand(0, $length - 1);
-    $correctAnswer = (string)$progression[$missingIndex];
-    $progression[$missingIndex] = '..';
-
+    [$progression, $missingNumber] = generateProgression();
     $question = implode(' ', $progression);
-
-    return [$question, $correctAnswer];
+    return [$question, (string)$missingNumber];
 }
 
 function runProgressionGame(): void
 {
-    runGame('Games\generateProgressionQuestionAndAnswer', DESCRIPTION); // Обновите вызов
+    runGame(__NAMESPACE__ . '\generateQuestionAndAnswer', DESCRIPTION);
 }
