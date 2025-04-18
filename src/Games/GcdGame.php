@@ -1,6 +1,6 @@
 <?php
 
-namespace Games;
+namespace Gamess;
 
 use function Engine\runGame;
 
