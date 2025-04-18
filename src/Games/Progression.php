@@ -4,7 +4,7 @@ namespace PhpProject45\Games;
 
 use function PhpProject45\Engine\runGame;
 
-const DESCRIPTION = 'What number is missing in the progression?';
+const PROGRESSION_DESCRIPTION = 'What number is missing in the progression?';
 
 function generateProgression(): array
 {
@@ -32,5 +32,5 @@ function generateProgressionQuestionAndAnswer(): array
 
 function runProgressionGame(): void
 {
-    runGame(__NAMESPACE__ . '\generateProgressionQuestionAndAnswer', DESCRIPTION);
+    runGame(__NAMESPACE__ . '\generateProgressionQuestionAndAnswer', PROGRESSION_DESCRIPTION);
 }
