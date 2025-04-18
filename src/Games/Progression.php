@@ -8,10 +8,10 @@ const PROGRESSION_DESCRIPTION = 'What number is missing in the progression?';
 
 function generateProgression(): array
 {
-    $length = rand(5, 10);
-    $start = rand(1, 20);
-    $step = rand(1, 10);
-    $hiddenIndex = rand(0, $length - 1);
+    $length = random_int(5, 10);
+    $start = random_int(1, 20);
+    $step = random_int(1, 10);
+    $hiddenIndex = random_int(0, $length - 1);
     $progression = [];
 
     for ($i = 0; $i < $length; $i++) {
