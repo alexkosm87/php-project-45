@@ -4,63 +4,43 @@ namespace PhpProject45\Games;
 
 use PhpProject45\Engine;
 
-class Progression
+function runProgressionGame(string $name): void
 {
-    public int $length; // Указан тип
-    public int $start; // Указан тип
-    public int $step; // Указан тип
+    const ROUNDS = 3;
 
-    public function __construct()
-    {
-        $this->length = random_int(5, 10);
-        $this->start = random_int(1, 10);
-        $this->step = random_int(1, 5);
-    }
+    echo "What number is missing in the progression?\n";
 
-    public function generateProgression(): array
-    {
-        $progression = [];
-        for ($i = 0; $i < $this->length; $i++) {
-            $progression[] = $this->start + $i * $this->step;
-        }
-        return $progression;
-    }
-
-    public function run(): void // Указан тип возвращаемого значения
-    {
-        $name = Engine::getUserName();
-        Engine::welcome($name);
-        echo "What number is missing in the progression?\n";
-
-        for ($i = 0; $i < 3; $i++) {
-            $questionData = $this->getQuestion();
-            $question = $questionData['question'];
-            $correctAnswer = $questionData['answer'];
-
-            Engine::askQuestion($question);
-            $userAnswer = Engine::getUserAnswer();
-
-            if ($userAnswer === $correctAnswer) {
-                Engine::correctAnswer();
-            } else {
-                Engine::wrongAnswer($userAnswer, $correctAnswer, $name);
-                return;
-            }
-        }
-
-        Engine::congratulate($name);
-    }
-
-    public function getQuestion(): array
-    {
-        $progression = $this->generateProgression();
-        $hiddenIndex = random_int(0, $this->length - 1);
+    for ($i = 0; $i < ROUNDS; $i++) {
+        $progression = generateProgression();
+        $hiddenIndex = random_int(0, count($progression) - 1);
         $correctAnswer = $progression[$hiddenIndex];
         $progression[$hiddenIndex] = '..';
 
-        return [
-            'question' => implode(' ', $progression),
-            'answer' => (string) $correctAnswer
-        ];
+        $question = implode(' ', $progression);
+        Engine\askQuestion($question);
+        $userAnswer = Engine\getUserAnswer();
+
+        if ($userAnswer !== (string)$correctAnswer) {
+            Engine\wrongAnswer($userAnswer, (string)$correctAnswer, $name);
+            return;
+        }
+
+        Engine\correctAnswer();
     }
+
+    Engine\congratulate($name);
+}
+
+function generateProgression(): array
+{
+    $length = random_int(5, 10);
+    $start = random_int(1, 10);
+    $step = random_int(1, 5);
+    $progression = [];
+
+    for ($i = 0; $i < $length; $i++) {
+        $progression[] = $start + $i * $step;
+    }
+
+    return $progression;
 }
