@@ -2,42 +2,19 @@
 
 namespace PhpProject45\Games;
 
-use function PhpProject45\Engine;
+use function PhpProject45\runGame;
 
-function runCalcGame(): void
+function getRandomExpression()
 {
-    $name = Engine\getUserName();
-    Engine\welcome($name);
-    
     $operations = ['+', '-', '*'];
-    $rounds = 3;
+    $num1 = rand(1, 50);
+    $num2 = rand(1, 50);
+    $operation = $operations[array_rand($operations)];
 
-    // Добавляем вывод сообщения перед началом вопросов
-    echo "What is the result of the expression?\n";
-
-    for ($i = 0; $i < $rounds; $i++) {
-        $num1 = random_int(1, 50);
-        $num2 = random_int(1, 50);
-        $operation = $operations[array_rand($operations)];
-        $question = "$num1 $operation $num2";
-
-        $correctAnswer = getCorrectAnswer($num1, $num2, $operation);
-
-        Engine\askQuestion($question);
-        $user Engine\getUserAnswer();
-
-        if ($userAnswer !== (string)$correctAnswer) {
-            Engine\wrongAnswer($userAnswer, (string)$correctAnswer, $name);
-            return;
-        }
-
-        Engine\correctAnswer();
-    }
-
-    Engine\congratulate($name);
+    return [$num1, $num2, $operation];
 }
 
-function getCorrectAnswer(int $num1, int $num2, string $operation): int
+function calculate($num1, $num2, $operation)
 {
     switch ($operation) {
         case '+':
@@ -46,7 +23,19 @@ function getCorrectAnswer(int $num1, int $num2, string $operation): int
             return $num1 - $num2;
         case '*':
             return $num1 * $num2;
-        default:
-            throw new \Exception("Unsupported operation: $operation");
     }
+}
+
+function playCalcGame()
+{
+    [$num1, $num2, $operation] = getRandomExpression();
+    $question = "{$num1} {$operation} {$num2}";
+    $correctAnswer = calculate($num1, $num2, $operation);
+
+    return [$question, $correctAnswer];
+}
+
+function startGame()
+{
+    runGame('PhpProject45\Games\playCalcGame');
 }
