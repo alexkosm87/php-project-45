@@ -6,9 +6,9 @@ use PhpProject45\Engine;
 
 class GcdGame
 {
-    public function gcd($a, $b)
+    public function gcd(int $a, int $b): int
     {
-        while ($b != 0) {
+        while ($b !== 0) {
             $temp = $b;
             $b = $a % $b;
             $a = $temp;
@@ -16,22 +16,22 @@ class GcdGame
         return $a;
     }
 
-    public function run()
+    public function run(): void
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
         echo "Find the greatest common divisor of given numbers.\n";
 
         for ($i = 0; $i < 3; $i++) {
-            $num1 = random_int (1, 100);
-            $num2 = random_int (1, 100);
+            $num1 = random_int(1, 100);
+            $num2 = random_int(1, 100);
             $correctAnswer = $this->gcd($num1, $num2);
 
             $question = "$num1 $num2";
             Engine::askQuestion($question);
             $userAnswer = Engine::getUserAnswer();
 
-            if ($userAnswer != $correctAnswer) {
+            if ($userAnswer !== (string)$correctAnswer) { // Приведение к строке для сравнения
                 Engine::wrongAnswer($userAnswer, $correctAnswer, $name);
                 return;
             }
