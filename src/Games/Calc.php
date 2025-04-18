@@ -18,8 +18,8 @@ function calculate(int $num1, int $num2, string $operation): int
 
 function generateCalcQuestionAndAnswer(): array
 {
-    $num1 = rand(1, 50);
-    $num2 = rand(1, 50);
+    $num1 = random_int(1, 50);
+    $num2 = random_int(1, 50);
     $operations = ['+', '-', '*'];
     $operation = $operations[array_rand($operations)];
 
