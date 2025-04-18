@@ -4,7 +4,7 @@ namespace PhpProject45\Games;
 
 use function PhpProject45\Engine\runGame;
 
-const DESCRIPTION = 'What is the result of the expression?';
+const CALC_DESCRIPTION = 'What is the result of the expression?';
 
 function calculate(int $num1, int $num2, string $operation): int
 {
@@ -31,5 +31,5 @@ function generateCalcQuestionAndAnswer(): array
 
 function runCalcGame(): void
 {
-    runGame(__NAMESPACE__ . '\generateCalcQuestionAndAnswer', DESCRIPTION);
+    runGame(__NAMESPACE__ . '\generateCalcQuestionAndAnswer', CALC_DESCRIPTION);
 }
