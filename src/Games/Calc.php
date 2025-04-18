@@ -15,8 +15,29 @@ class Calc
         Engine::welcome($name);
         echo "What is the result of the expression?\n";
         for ($i = 0; $i < self::ROUNDS; $i++) {
-            $question = $this->_generateQuestion();
-            $correctAnswer = $this->_calculateAnswer($question);
+            // Генерация вопроса
+            $num1 = random_int(1, 50);
+            $num2 = random_int(1, 50);
+            $operation = self::OPERATIONS[array_rand(self::OPERATIONS)];
+            $question = "$num1 $operation $num2";
+
+            // Вычисление правильного ответа
+            $num1 = (int)$num1; // Приведение к типу int
+            $num2 = (int)$num2; // Приведение к типу int
+
+            switch ($operation) {
+                case '+':
+                    $correctAnswer = $num1 + $num2;
+                    break;
+                case '-':
+                    $correctAnswer = $num1 - $num2;
+                    break;
+                case '*':
+                    $correctAnswer = $num1 * $num2;
+                    break;
+                default:
+                    throw new \Exception("Unsupported operation: $operation");
+            }
 
             Engine::askQuestion($question);
             $userAnswer = Engine::getUserAnswer();
@@ -30,32 +51,5 @@ class Calc
         }
 
         Engine::congratulate($name);
-    }
-
-    private function _generateQuestion(): string
-    {
-        $num1 = random_int(1, 50);
-        $num2 = random_int(1, 50);
-        $operation = self::OPERATIONS[array_rand(self::OPERATIONS)];
-
-        return "$num1 $operation $num2";
-    }
-
-    private function _calculateAnswer(string $question): int
-    {
-        list($num1, $operation, $num2) = explode(' ', $question);
-        $num1 = (int)$num1; // Приведение к типу int
-        $num2 = (int)$num2; // Приведение к типу int
-
-        switch ($operation) {
-            case '+':
-                return $num1 + $num2;
-            case '-':
-                return $num1 - $num2;
-            case '*':
-                return $num1 * $num2;
-            default:
-                throw new \Exception("Unsupported operation: $operation");
-        }
     }
 }
