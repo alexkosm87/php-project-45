@@ -3,9 +3,6 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use function PhpProject45\Games\runCalcGame;
+use PhpProject45\Games;
 
-runCalcGame(); // Запускаем игру, не передавая аргументы
-
-
-
+Games\startGame();
