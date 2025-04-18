@@ -1,46 +1,37 @@
 <?php
 
-namespace PhpProject45\Games;
+namespace Games;
 
-use PhpProject45\Engine;
+use function Engine\runGame;
 
-function runProgressionGame(string $name): void
+const DESCRIPTION = 'What number is missing in the progression?';
+
+function generateProgression($start, $step, $length)
 {
-    const ROUNDS = 3;
-
-    echo "What number is missing in the progression?\n";
-
-    for ($i = 0; $i < ROUNDS; $i++) {
-        $progression = generateProgression();
-        $hiddenIndex = random_int(0, count($progression) - 1);
-        $correctAnswer = $progression[$hiddenIndex];
-        $progression[$hiddenIndex] = '..';
-
-        $question = implode(' ', $progression);
-        Engine\askQuestion($question);
-        $userAnswer = Engine\getUserAnswer();
-
-        if ($userAnswer !== (string)$correctAnswer) {
-            Engine\wrongAnswer($userAnswer, (string)$correctAnswer, $name);
-            return;
-        }
-
-        Engine\correctAnswer();
-    }
-
-    Engine\congratulate($name);
-}
-
-function generateProgression(): array
-{
-    $length = random_int(5, 10);
-    $start = random_int(1, 10);
-    $step = random_int(1, 5);
     $progression = [];
-
     for ($i = 0; $i < $length; $i++) {
         $progression[] = $start + $i * $step;
     }
-
     return $progression;
+}
+
+function generateQuestionAndAnswer()
+{
+    $start = rand(1, 50);
+    $step = rand(1, 10);
+    $length = 10;
+
+    $progression = generateProgression($start, $step, $length);
+    $missingIndex = rand(0, $length - 1);
+    $correctAnswer = (string)$progression[$missingIndex];
+    $progression[$missingIndex] = '..';
+
+    $question = implode(' ', $progression);
+
+    return [$question, $correctAnswer];
+}
+
+function runProgressionGame(): void
+{
+    runGame('Games\generateQuestionAndAnswer', DESCRIPTION);
 }
