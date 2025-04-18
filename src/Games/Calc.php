@@ -9,11 +9,12 @@ class Calc
     private const OPERATIONS = ['+', '-', '*'];
     private const ROUNDS = 3;
 
-    public function run()
+    public function run(): void // Указан тип возвращаемого значения
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
         echo "What is the result of the expression?\n";
+
         for ($i = 0; $i < self::ROUNDS; $i++) {
             // Генерация вопроса
             $num1 = random_int(1, 50);
@@ -22,28 +23,14 @@ class Calc
             $question = "$num1 $operation $num2";
 
             // Вычисление правильного ответа
-            $num1 = (int)$num1; // Приведение к типу int
-            $num2 = (int)$num2; // Приведение к типу int
-
-            switch ($operation) {
-                case '+':
-                    $correctAnswer = $num1 + $num2;
-                    break;
-                case '-':
-                    $correctAnswer = $num1 - $num2;
-                    break;
-                case '*':
-                    $correctAnswer = $num1 * $num2;
-                    break;
-                default:
-                    throw new \Exception("Unsupported operation: $operation");
-            }
+            $correctAnswer = $this->calculateAnswer($num1, $num2, $operation);
 
             Engine::askQuestion($question);
             $userAnswer = Engine::getUserAnswer();
 
-            if ($userAnswer != $correctAnswer) {
-                Engine::wrongAnswer($userAnswer, $correctAnswer, $name);
+            // Приведение к строке для сравнения
+            if ($userAnswer !== (string)$correctAnswer) {
+                Engine::wrongAnswer($userAnswer, (string)$correctAnswer, $name);
                 return;
             }
 
@@ -51,5 +38,19 @@ class Calc
         }
 
         Engine::congratulate($name);
+    }
+
+    private function calculateAnswer(int $num1, int $num2, string $operation): int // Указаны типы параметров и возвращаемое значение
+    {
+        switch ($operation) {
+            case '+':
+                return $num1 + $num2;
+            case '-':
+                return $num1 - $num2;
+            case '*':
+                return $num1 * $num2;
+            default:
+                throw new \Exception("Unsupported operation: $operation");
+        }
     }
 }
