@@ -11,11 +11,10 @@ function gcd(int $a, int $b): int
     return $b === 0 ? $a : gcd($b, $a % $b);
 }
 
-function generateQuestionAndAnswer(): array
+function generateGcdQuestionAndAnswer(): array
 {
     $num1 = rand(1, 100);
     $num2 = rand(1, 100);
-
     $question = "$num1 $num2";
     $correctAnswer = (string) gcd($num1, $num2);
 
@@ -24,5 +23,5 @@ function generateQuestionAndAnswer(): array
 
 function runGcdGame(): void
 {
-    runGame(__NAMESPACE__ . '\generateQuestionAndAnswer', DESCRIPTION);
+    runGame(__NAMESPACE__ . '\generateGcdQuestionAndAnswer', DESCRIPTION);
 }
