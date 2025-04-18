@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpProject45\Games;
+namespace Games\Prime;
 
-use function PhpProject45\Engine\runGame;
+use function Engine\runGame;
 
 const PRIME_DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
@@ -19,16 +19,15 @@ function isPrime(int $number): bool
     return true;
 }
 
-function generatePrimeQuestionAndAnswer(): array
-{
-    $number = random_int(1, 100);
-    $question = (string) $number;
-    $correctAnswer = isPrime($number) ? 'yes' : 'no';
-
-    return [$question, $correctAnswer];
-}
-
 function runPrimeGame(): void
 {
-    runGame(__NAMESPACE__ . '\generatePrimeQuestionAndAnswer', PRIME_DESCRIPTION);
+    $generatePrimeQuestionAndAnswer = function (): array {
+        $number = random_int(1, 100);
+        $question = (string) $number;
+        $correctAnswer = isPrime($number) ? 'yes' : 'no';
+
+        return [$question, $correctAnswer];
+    };
+
+    runGame($generatePrimeQuestionAndAnswer, PRIME_DESCRIPTION);
 }
