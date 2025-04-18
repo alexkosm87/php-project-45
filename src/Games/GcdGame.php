@@ -6,7 +6,7 @@ use PhpProject45\Engine;
 
 class GcdGame
 {
-    public function gcd(int $a, int $b): int
+    public function gcd(int $a, int $b): int // Указан тип возвращаемого значения
     {
         while ($b !== 0) {
             $temp = $b;
@@ -16,7 +16,7 @@ class GcdGame
         return $a;
     }
 
-    public function run(): void
+    public function run(): void // Указан тип возвращаемого значения
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
@@ -31,8 +31,9 @@ class GcdGame
             Engine::askQuestion($question);
             $userAnswer = Engine::getUserAnswer();
 
-            if ($userAnswer !== (string)$correctAnswer) { // Приведение к строке для сравнения
-                Engine::wrongAnswer($userAnswer, $correctAnswer, $name);
+            // Приведение к строке для сравнения
+            if ($userAnswer !== (string)$correctAnswer) { 
+                Engine::wrongAnswer($userAnswer, (string)$correctAnswer, $name); // Приведение к строке для correctAnswer
                 return;
             }
 
