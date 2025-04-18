@@ -15,7 +15,7 @@ function generateProgression($start, $step, $length)
     return $progression;
 }
 
-function generateQuestionAndAnswer()
+function generateProgressionQuestionAndAnswer() // Переименуйте эту функцию
 {
     $start = rand(1, 50);
     $step = rand(1, 10);
@@ -33,5 +33,5 @@ function generateQuestionAndAnswer()
 
 function runProgressionGame(): void
 {
-    runGame('Games\generateQuestionAndAnswer', DESCRIPTION);
+    runGame('Games\generateProgressionQuestionAndAnswer', DESCRIPTION); // Обновите вызов
 }
