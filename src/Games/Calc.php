@@ -1,37 +1,27 @@
 <?php
 
-namespace Games;
+namespace PhpProject45\Games;
 
-use function cli\line;
-use function cli\prompt;
+use function PhpProject45\Engine\runGame;
 
-const ROUNDS_COUNT = 3;
+const DESCRIPTION = 'What is the result of the expression?';
 
-function getRandomOperation()
+function calculate(int $num1, int $num2, string $operation): int
 {
-    $operations = ['+', '-', '*'];
-    return $operations[array_rand($operations)];
+    return match ($operation) {
+        '+' => $num1 + $num2,
+        '-' => $num1 - $num2,
+        '*' => $num1 * $num2,
+        default => throw new \InvalidArgumentException("Unsupported operation: $operation"),
+    };
 }
 
-function calculate($num1, $num2, $operation)
-{
-    switch ($operation) {
-        case '+':
-            return $num1 + $num2;
-        case '-':
-            return $num1 - $num2;
-        case '*':
-            return $num1 * $num2;
-        default:
-            throw new \InvalidArgumentException("Unsupported operation: $operation");
-    }
-}
-
-function generateQuestionAndAnswer()
+function generateQuestionAndAnswer(): array
 {
     $num1 = rand(1, 50);
     $num2 = rand(1, 50);
-    $operation = getRandomOperation();
+    $operations = ['+', '-', '*'];
+    $operation = $operations[array_rand($operations)];
 
     $question = "$num1 $operation $num2";
     $correctAnswer = (string) calculate($num1, $num2, $operation);
@@ -39,26 +29,7 @@ function generateQuestionAndAnswer()
     return [$question, $correctAnswer];
 }
 
-function runCalcGame()
+function runCalcGame(): void
 {
-    line('Welcome to the Brain Games!');
-    $name = prompt('May I have your name? ');
-    line("Hello, $name!");
-    line('What is the result of the expression?');
-
-    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
-        [$question, $correctAnswer] = generateQuestionAndAnswer();
-        line("Question: $question");
-        $userAnswer = prompt('Your answer: ');
-
-        if ($userAnswer === $correctAnswer) {
-            line('Correct!');
-        } else {
-            line("'$userAnswer' is wrong answer ;(. Correct answer was '$correctAnswer'.");
-            line("Let's try again, $name!");
-            return;
-        }
-    }
-
-    line("Congratulations, $name!");
+    runGame(__NAMESPACE__ . '\generateQuestionAndAnswer', DESCRIPTION);
 }
