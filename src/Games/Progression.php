@@ -6,18 +6,18 @@ use PhpProject45\Engine;
 
 class Progression
 {
-    private $_length;
-    private $_start;
-    private $_step;
+    public $length;
+    public $start;
+    public $step;
 
     public function __construct()
     {
-        $this->length = random_int(5, 10); // Длина прогрессии от 5 до 10
-        $this->start = random_int(1, 10); // Начальное число
-        $this->step = random_int(1, 5); // Шаг прогрессии
+        $this->length = random_int(5, 10);
+        $this->start = random_int(1, 10);
+        $this->step = random_int(1, 5);
     }
 
-    public function generateProgression(): array // Указываем тип возвращаемого значения
+    public function generateProgression(): array
     {
         $progression = [];
         for ($i = 0; $i < $this->length; $i++) {
@@ -40,7 +40,7 @@ class Progression
             Engine::askQuestion($question);
             $userAnswer = Engine::getUserAnswer();
 
-            if ($userAnswer === $correctAnswer) { // Используем строгое сравнение
+            if ($userAnswer === $correctAnswer) {
                 Engine::correctAnswer();
             } else {
                 Engine::wrongAnswer($userAnswer, $correctAnswer, $name);
@@ -51,16 +51,16 @@ class Progression
         Engine::congratulate($name);
     }
 
-    private function getQuestion(): array // Указываем тип возвращаемого значения
+    public function getQuestion(): array
     {
         $progression = $this->generateProgression();
         $hiddenIndex = random_int(0, $this->length - 1);
         $correctAnswer = $progression[$hiddenIndex];
-        $progression[$hiddenIndex] = '..'; // Заменяем число на '..'
+        $progression[$hiddenIndex] = '..';
         
         return [
             'question' => implode(' ', $progression),
-            'answer' => (string) $correctAnswer // Приводим к строке
+            'answer' => (string) $correctAnswer
         ];
     }
 }
