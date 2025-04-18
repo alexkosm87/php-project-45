@@ -28,8 +28,8 @@ function calculate($num1, $num2, $operation)
 
 function generateQuestionAndAnswer()
 {
-    $num1 = rand(1, 50);
-    $num2 = rand(1, 50);
+    $num1 = random_int(1, 50);
+    $num2 = random_int(1, 50);
     $operation = getRandomOperation();
 
     $question = "$num1 $operation $num2";
