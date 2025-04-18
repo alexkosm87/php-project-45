@@ -4,7 +4,6 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use PhpProject45\Engine;
-use PhpProject45\Games\GcdGame;
+use PhpProject45\Games;
 
-$game = new GcdGame();
-Engine::run($game);
+Games\runGcdGame(Engine\getUserName());
