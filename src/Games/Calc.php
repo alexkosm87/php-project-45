@@ -2,29 +2,30 @@
 
 namespace PhpProject45\Games;
 
-use PhpProject45\Engine;
+use function PhpProject45\Engine;
 
-function runCalcGame(string $name): void
+function runCalcGame(): void
 {
-    echo "What is the result of the expression?\n";
-
+    $name = Engine\getUserName();
+    Engine\welcome($name);
+    
     $operations = ['+', '-', '*'];
     $rounds = 3;
 
+    // Добавляем вывод сообщения перед началом вопросов
+    echo "What is the result of the expression?\n";
+
     for ($i = 0; $i < $rounds; $i++) {
-        // Генерация вопроса
         $num1 = random_int(1, 50);
         $num2 = random_int(1, 50);
         $operation = $operations[array_rand($operations)];
         $question = "$num1 $operation $num2";
 
-        // Вычисление правильного ответа
         $correctAnswer = getCorrectAnswer($num1, $num2, $operation);
 
         Engine\askQuestion($question);
-        $userAnswer = Engine\getUserAnswer();
+        $user Engine\getUserAnswer();
 
-        // Приведение к строке для сравнения
         if ($userAnswer !== (string)$correctAnswer) {
             Engine\wrongAnswer($userAnswer, (string)$correctAnswer, $name);
             return;
