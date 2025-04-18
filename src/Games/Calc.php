@@ -2,7 +2,7 @@
 
 namespace PhpProject45\Games;
 
-use function Engine\runGame;
+use function PhpProject45\Engine\runGame;
 
 const DESCRIPTION = 'What is the result of the expression?';
 
