@@ -2,47 +2,33 @@
 
 namespace PhpProject45\Games;
 
-use PhpProject45\Engine;
+use function PhpProject45\Engine\runGame;
 
-function runPrimeGame(string $name): void
+const DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
+function isPrime(int $number): bool
 {
-    const ROUNDS = 3;
-
-    echo "Answer \"yes\" if given number is prime. Otherwise answer \"no\".\n";
-
-    for ($i = 0; $i < ROUNDS; $i++) {
-        $question = random_int(1, 100);
-        $correctAnswer = isPrime($question) ? 'yes' : 'no';
-
-        Engine\askQuestion($question);
-        $userAnswer = Engine\getUserAnswer();
-
-        if ($userAnswer !== $correctAnswer) {
-            Engine\wrongAnswer($userAnswer, $correctAnswer, $name);
-            return;
-        }
-
-        Engine\correctAnswer();
-    }
-
-    Engine\congratulate($name);
-}
-
-function isPrime(int $n): bool
-{
-    if ($n < 2) {
+    if ($number < 2) {
         return false;
     }
-    if ($n === 2) {
-        return true;
-    }
-    if ($n % 2 === 0) {
-        return false;
-    }
-    for ($i = 3; $i <= sqrt($n); $i += 2) {
-        if ($n % $i === 0) {
+    for ($i = 2; $i <= sqrt($number); $i++) {
+        if ($number % $i === 0) {
             return false;
         }
     }
     return true;
+}
+
+function generateQuestionAndAnswer(): array
+{
+    $number = rand(1, 100);
+    $question = (string)$number;
+    $correctAnswer = isPrime($number) ? 'yes' : 'no';
+
+    return [$question, $correctAnswer];
+}
+
+function runPrimeGame(): void
+{
+    runGame(__NAMESPACE__ . '\generateQuestionAndAnswer', DESCRIPTION);
 }
