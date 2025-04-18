@@ -3,8 +3,6 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use PhpProject45\Games\Calc;
-use PhpProject45\Engine;
+use PhpProject45\Games;
 
-$game = new Calc();
-Engine::run($game);
+Games\runCalcGame();
