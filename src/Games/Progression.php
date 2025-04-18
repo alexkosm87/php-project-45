@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpProject45\Games;
+namespace Games\Progression;
 
-use function PhpProject45\Engine\runGame;
+use function Engine\runGame;
 
 const PROGRESSION_DESCRIPTION = 'What number is missing in the progression?';
 
@@ -21,16 +21,15 @@ function generateProgression(): array
     return [$progression, $start + $hiddenIndex * $step];
 }
 
-function generateProgressionQuestionAndAnswer(): array
-{
-    [$progression, $missingNumber] = generateProgression();
-    $question = implode(' ', $progression);
-    $correctAnswer = (string) $missingNumber;
-
-    return [$question, $correctAnswer];
-}
-
 function runProgressionGame(): void
 {
-    runGame(__NAMESPACE__ . '\generateProgressionQuestionAndAnswer', PROGRESSION_DESCRIPTION);
+    $generateProgressionQuestionAndAnswer = function (): array {
+        [$progression, $missingNumber] = generateProgression();
+        $question = implode(' ', $progression);
+        $correctAnswer = (string) $missingNumber;
+
+        return [$question, $correctAnswer];
+    };
+
+    runGame($generateProgressionQuestionAndAnswer, PROGRESSION_DESCRIPTION);
 }
