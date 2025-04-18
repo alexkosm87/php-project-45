@@ -32,8 +32,7 @@ class Progression
         Engine::welcome($name);
         echo "What number is missing in the progression?\n";
 
-        for ($i = 0; $i < 3; $i++) 
-        {
+        for ($i = 0; $i < 3; $i++) {
             $questionData = $this->getQuestion();
             $question = $questionData['question'];
             $correctAnswer = $questionData['answer'];
@@ -58,7 +57,7 @@ class Progression
         $hiddenIndex = random_int(0, $this->length - 1);
         $correctAnswer = $progression[$hiddenIndex];
         $progression[$hiddenIndex] = '..';
-        
+
         return [
             'question' => implode(' ', $progression),
             'answer' => (string) $correctAnswer
