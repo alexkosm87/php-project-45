@@ -4,7 +4,7 @@ namespace PhpProject45\Games;
 
 use function PhpProject45\Engine\runGame;
 
-const DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+const PRIME_DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 function isPrime(int $number): bool
 {
@@ -30,5 +30,5 @@ function generatePrimeQuestionAndAnswer(): array
 
 function runPrimeGame(): void
 {
-    runGame(__NAMESPACE__ . '\generatePrimeQuestionAndAnswer', DESCRIPTION);
+    runGame(__NAMESPACE__ . '\generatePrimeQuestionAndAnswer', PRIME_DESCRIPTION);
 }
