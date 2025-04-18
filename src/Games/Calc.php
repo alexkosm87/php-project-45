@@ -23,7 +23,7 @@ class Calc
             $question = "$num1 $operation $num2";
 
             // Вычисление правильного ответа
-            $correctAnswer = $this->calculateAnswer($num1, $num2, $operation);
+            $correctAnswer = $this->getCorrectAnswer($num1, $num2, $operation);
 
             Engine::askQuestion($question);
             $userAnswer = Engine::getUserAnswer();
@@ -40,7 +40,8 @@ class Calc
         Engine::congratulate($name);
     }
 
-    private function calculateAnswer(int $num1, int $num2, string $operation): int // Указаны типы параметров и возвращаемое значение
+    // Метод для вычисления правильного ответа
+    public function getCorrectAnswer(int $num1, int $num2, string $operation): int
     {
         switch ($operation) {
             case '+':
