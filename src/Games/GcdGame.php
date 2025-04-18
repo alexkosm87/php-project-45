@@ -1,12 +1,12 @@
 <?php
 
-namespace PhpProject45\Games;
+Project45\Games;
 
 use PhpProject45\Engine;
 
 class GcdGame
 {
-    public function gcd(int $a, int $b): int // Указан тип возвращаемого значения
+    public function gcd(int $a, int $b): int
     {
         while ($b !== 0) {
             $temp = $b;
@@ -16,7 +16,7 @@ class GcdGame
         return $a;
     }
 
-    public function run(): void // Указан тип возвращаемого значения
+    public function run(): void
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
@@ -31,9 +31,8 @@ class GcdGame
             Engine::askQuestion($question);
             $userAnswer = Engine::getUserAnswer();
 
-            // Приведение к строке для сравнения
-            if ($userAnswer !== (string)$correctAnswer) { 
-                Engine::wrongAnswer($userAnswer, (string)$correctAnswer, $name); // Приведение к строке для correctAnswer
+            if ($userAnswer !== (string)$correctAnswer) { // Приведение к строке для сравнения
+                Engine::wrongAnswer($userAnswer, (string)$correctAnswer, $name);
                 return;
             }
 
