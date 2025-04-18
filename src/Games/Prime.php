@@ -8,7 +8,7 @@ class Prime
 {
     private const ROUNDS = 3;
 
-    public function run()
+    public function run(): void // Указан тип возвращаемого значения
     {
         $name = Engine::getUserName();
         Engine::welcome($name);
@@ -18,7 +18,7 @@ class Prime
             $question = random_int(1, 100); // Генерируем случайное число от 1 до 100
             $correctAnswer = $this->isPrime($question) ? 'yes' : 'no';
 
-            Engine::askQuestion($question);
+            Engine::askQuestion((string)$question); // Приводим к строке для совместимости
             $userAnswer = Engine::getUserAnswer();
 
             if ($userAnswer !== $correctAnswer) {
@@ -33,7 +33,7 @@ class Prime
     }
 
     // Метод для проверки, является ли число простым
-    public function isPrime(int $n): bool
+    public function isPrime(int $n): bool // Указан тип возвращаемого значения
     {
         if ($n < 2) {
             return false;
