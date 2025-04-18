@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpProject45\Games;;
+namespace PhpProject45\Games;
 
 use function Engine\runGame;
 
