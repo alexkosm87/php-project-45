@@ -1,36 +1,27 @@
 <?php
 
-namespace Games;
+namespace PhpProject45\Games;
 
-use function Engine\runGame;
+use function PhpProject45\Engine\runGame;
 
 const DESCRIPTION = 'What is the result of the expression?';
 
-function getRandomOperation()
+function calculate(int $num1, int $num2, string $operation): int
 {
+    return match ($operation) {
+        '+' => $num1 + $num2,
+        '-' => $num1 - $num2,
+        '*' => $num1 * $num2,
+        default => throw new \InvalidArgumentException("Unsupported operation: $operation"),
+    };
+}
+
+function generateQuestionAndAnswer(): array
+{
+    $num1 = rand(1, 50);
+    $num2 = rand(1, 50);
     $operations = ['+', '-', '*'];
-    return $operations[array_rand($operations)];
-}
-
-function calculate($num1, $num2, $operation)
-{
-    switch ($operation) {
-        case '+':
-            return $num1 + $num2;
-        case '-':
-            return $num1 - $num2;
-        case '*':
-            return $num1 * $num2;
-        default:
-            throw new \InvalidArgumentException("Unsupported operation: $operation");
-    }
-}
-
-function generateQuestionAndAnswer()
-{
-    $num1 = random_int(1, 50);
-    $num2 = random_int(1, 50);
-    $operation = getRandomOperation();
+    $operation = $operations[array_rand($operations)];
 
     $question = "$num1 $operation $num2";
     $correctAnswer = (string) calculate($num1, $num2, $operation);
@@ -40,5 +31,5 @@ function generateQuestionAndAnswer()
 
 function runCalcGame(): void
 {
-    runGame('Games\generateQuestionAndAnswer', DESCRIPTION);
+    runGame(__NAMESPACE__ . '\generateQuestionAndAnswer', DESCRIPTION);
 }
