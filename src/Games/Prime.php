@@ -21,7 +21,7 @@ function isPrime(int $number): bool
 
 function generatePrimeQuestionAndAnswer(): array
 {
-    $number = rand(1, 100);
+    $number = random_int(1, 100);
     $question = (string) $number;
     $correctAnswer = isPrime($number) ? 'yes' : 'no';
 
