@@ -4,7 +4,7 @@ namespace PhpProject45\Games;
 
 use function PhpProject45\Engine\runGame;
 
-const DESCRIPTION = 'Find the greatest common divisor of given numbers.';
+const GCD_DESCRIPTION = 'Find the greatest common divisor of given numbers.';
 
 function gcd(int $a, int $b): int
 {
@@ -23,5 +23,5 @@ function generateGcdQuestionAndAnswer(): array
 
 function runGcdGame(): void
 {
-    runGame(__NAMESPACE__ . '\generateGcdQuestionAndAnswer', DESCRIPTION);
+    runGame(__NAMESPACE__ . '\generateGcdQuestionAndAnswer', GCD_DESCRIPTION);
 }
