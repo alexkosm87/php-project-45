@@ -1,34 +1,43 @@
 <?php
 
-namespace PhpProject45;
+namespace Engine;
 
 use function cli\prompt;
 use function cli\line;
 
-function runGame($gameLogic)
+const ROUNDS = 3;
+
+function greetUser()
 {
-    line('Welcome to the Brain Games!');
-    $name = prompt('May I have your name?');
-    line("Hello, %s!", $name);
-    line('What is the result of the expression?');
+    $name = prompt("May I have your name? ");
+    line("Hello, $name!");
+    return $name;
+}
 
-    $correctAnswersCount = 0;
-    $roundsToWin = 3;
+function askQuestion($question, $correctAnswer)
+{
+    line("Question: $question");
+    $userAnswer = prompt("Your answer: ");
 
-    while ($correctAnswersCount < $roundsToWin) {
-        [$question, $correctAnswer] = $gameLogic();
-        line("Question: $question");
-        $userAnswer = prompt("Your answer:");
+    return $userAnswer === $correctAnswer;
+}
 
-        if ($userAnswer != $correctAnswer) {
-            line("'%s' is wrong answer ;(. Correct answer was '%s'.", $userAnswer, $correctAnswer);
-            line("Let's try again, %s!", $name);
+function runGame($gameFunction)
+{
+    $name = greetUser();
+    line("What is the result of the expression?");
+
+    for ($i = 0; $i < ROUNDS; $i++) {
+        list($question, $correctAnswer) = $gameFunction();
+        
+        if (askQuestion($question, $correctAnswer)) {
+            line("Correct!");
+        } else {
+            line("'$userAnswer' is wrong answer ;(. Correct answer was '$correctAnswer'.");
+            line("Let's try again, $name!");
             return;
         }
-
-        line("Correct!");
-        $correctAnswersCount++;
     }
 
-    line("Congratulations, %s!", $name);
+    line("Congratulations, $name!");
 }
