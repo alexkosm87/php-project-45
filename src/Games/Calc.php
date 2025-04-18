@@ -29,7 +29,7 @@ function generateQuestionAndAnswer(): array
     return [$question, $correctAnswer];
 }
 
-function runGame(): void
+function runCalcGame(): void
 {
     runGame(__NAMESPACE__ . '\generateQuestionAndAnswer', DESCRIPTION);
 }
