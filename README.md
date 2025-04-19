@@ -1,6 +1,14 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/alexkosm87/php-project-45/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/alexkosm87/php-project-45/actions)
 
+## Prerequisites
+
+* Linux, Macos, WSL
+* PHP >=8.2
+* Xdebug
+* Make
+* Git
+
 #  Badges:
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=alexkosm87_php-project-45&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=alexkosm87_php-project-45)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=alexkosm87_php-project-45&metric=bugs)](https://sonarcloud.io/summary/new_code?id=alexkosm87_php-project-45)
