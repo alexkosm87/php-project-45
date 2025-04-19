@@ -5,7 +5,8 @@ namespace Games\EvenGame;
 use function cli\line;
 use function cli\prompt;
 
-function isEven($number) {
+function isEven($number) 
+{
     return $number % 2 === 0;
 }
 
