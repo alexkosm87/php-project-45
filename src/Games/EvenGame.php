@@ -44,4 +44,3 @@ function playGame()
 
     line("Congratulations, %s!", $name);
 }
-
