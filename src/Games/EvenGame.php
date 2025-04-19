@@ -26,7 +26,7 @@ function playGame()
     $roundsToWin = 3;
 
     while ($correctAnswersCount < $roundsToWin) {
-        $number = mt_rand(0, PHP_INT_MAX);
+        $number = random_int(0, PHP_INT_MAX);
         $correctAnswer = isEven($number) ? 'yes' : 'no';
 
         line("Question: %d", $number);
