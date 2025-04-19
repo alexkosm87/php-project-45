@@ -9,14 +9,16 @@ function isEven($number) {
     return $number % 2 === 0;
 }
 
-function welcome() {
+function welcome() 
+{
     line('Welcome to the Brain Games!');
     $name = prompt('May I have your name?');
     line("Hello, %s!", $name);
     return $name;
 }
 
-function playGame() {
+function playGame() 
+{
     $name = welcome();
     line('Answer "yes" if the number is even, otherwise answer "no".');
 
