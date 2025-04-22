@@ -1,8 +1,8 @@
 <?php
 
-namespace Games\Prime;
+namespace PhpProject45\Games\Prime;
 
-use function Engine\runGame;
+use function PhpProject45\Engine\runGame;
 
 const PRIME_DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
