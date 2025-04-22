@@ -1,8 +1,8 @@
 <?php
 
-namespace Games\GcdGame;
+namespace PhpProject45\Games\GcdGame;
 
-use function Engine\runGame;
+use function PhpProject45\Engine\runGame;
 
 const GCD_DESCRIPTION = 'Find the greatest common divisor of given numbers.';
 
