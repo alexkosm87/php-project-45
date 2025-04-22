@@ -1,8 +1,8 @@
 <?php
 
-namespace Games\Progression;
+namespace PhpProject45\Games\Progression;
 
-use function Engine\runGame;
+use function PhpProject45\Engine\runGame;
 
 const PROGRESSION_DESCRIPTION = 'What number is missing in the progression?';
 
