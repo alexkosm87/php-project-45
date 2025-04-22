@@ -2,7 +2,7 @@
 
 namespace Games\Calc;
 
-use function Engine\runGame;
+use function PhpProject45\Engine\runGame;
 
 const CALC_DESCRIPTION = 'What is the result of the expression?';
 
