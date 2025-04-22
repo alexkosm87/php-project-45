@@ -1,6 +1,6 @@
 <?php
 
-namespace Games\Calc;
+namespace PhpProject45\Games\Calc;
 
 use function PhpProject45\Engine\runGame;
 
