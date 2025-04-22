@@ -20,7 +20,8 @@
         "files": [
             "src/Cli.php",
             "src/Engine.php",
-            "src/Games/Calc.php",
+            "src/Games/EvenGame.php",
+            "src/Games/Calc.php",            
             "src/Games/GcdGame.php",
             "src/Games/Progression.php",
             "src/Games/Prime.php"
