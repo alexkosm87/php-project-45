@@ -1,9 +1,11 @@
 <?php
 
-namespace PhpProject45\Games\EvenGame;
+namespace Games\EvenGame;
 
 use function cli\line;
 use function cli\prompt;
+
+const GAME_DESCRIPTION = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 function isEven(int $number): bool
 {
@@ -18,19 +20,27 @@ function welcome(): string
     return $name;
 }
 
-function playGame(): void
+function generateQuestionAndAnswer(): array
+{
+    $number = random_int(0, PHP_INT_MAX);
+    $correctAnswer = isEven($number) ? 'yes' : 'no';
+    $question = (string)$number;
+
+    return [$question, $correctAnswer];
+}
+
+function runEvenGame(): void
 {
     $name = welcome();
-    line('Answer "yes" if the number is even, otherwise answer "no".');
+    line(GAME_DESCRIPTION);
 
     $correctAnswersCount = 0;
     $roundsToWin = 3;
 
     while ($correctAnswersCount < $roundsToWin) {
-        $number = random_int(0, PHP_INT_MAX);
-        $correctAnswer = isEven($number) ? 'yes' : 'no';
+        [$question, $correctAnswer] = generateQuestionAndAnswer();
 
-        line("Question: %d", $number);
+        line("Question: %s", $question);
         $userAnswer = prompt("Your answer:");
 
         if ($userAnswer !== $correctAnswer) {
