@@ -1,6 +1,6 @@
 <?php
 
-namespace Games\EvenGame;
+namespace PhpProject45\Games\EvenGame;
 
 use function cli\line;
 use function cli\prompt;
