@@ -21,17 +21,17 @@
             "src/Cli.php",
             "src/Engine.php",
             "src/Games/EvenGame.php",
-            "src/Games/Calc.php",            
+            "src/Games/Calc.php",
             "src/Games/GcdGame.php",
             "src/Games/Progression.php",
             "src/Games/Prime.php"
-        ]   
+        ]
     },
    "bin": [
         "bin/brain-games",
          "bin/brain-even",
          "bin/brain-calc",
-         "bin/brain-gcd",       
+         "bin/brain-gcd",
          "bin/brain-progression",
          "bin/brain-prime"
     ],
