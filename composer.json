@@ -14,9 +14,6 @@
     "license": "MIT",
 
     "autoload": {
-        "psr-4": {
-        "PhpProject45\\": "src/"
-        },
         "files": [
             "src/Cli.php",
             "src/Engine.php",
